@@ -76,15 +76,32 @@ struct node *insert_start(struct node *head, int data) {
     // case 2: one item
     // case 3: everything else
     new->next = head;
-    head = new;
-
-    return head;
+    return new;
     // return create_node(data, head);
 }
 
 // Inserts at the end of the linked list
 struct node *insert_last(struct node *head, int data) {
-    // TODO
+    struct node *new = create_node(data, NULL);
+
+    // case 1: empty list
+    if (head == NULL) {
+        return new;
+    }
+
+    // case 2: everything else
+    struct node *last_node = get_last_node(head);
+    last_node->next = new;
+    
+    return head;
+}
+
+struct node *get_last_node(struct node *head) {
+    struct node *curr = head;
+    while (curr->next != NULL) {
+        curr = curr->next;
+    }
+    return curr;
 }
 
 // Inserts in the middle of the linked list
@@ -93,7 +110,26 @@ struct node *insert_last(struct node *head, int data) {
 // In an odd linked list, it is the one before the old middle
 // Eg. Inserting 2 into 1 -> 3 -> 4 -> X becomes 1 -> 2 -> 3 -> 4 -> X
 struct node *insert_middle(struct node *head, int data) {
-    // TODO
+    // case 1: empty list
+    // do it like the other ones
+
+    // case 2: even linked list
+    // middle = length / 2
+    // count == 0 or 1
+    // loop until u find the middle
+    // new->next = after == before->next;
+    // before->next = new;
+
+    // eg. 1 -> 3 -> X; length = 2
+    // before == 1
+    // after == 3
+
+    // case 3: odd linked list
+    // middle = length / 2 + 1 or -1 or +-0
+    // count == 0 or 1
+    // loop until u find the middle
+    // new->next = after == before->next;
+    // before->next = new;
 }
 
 // Malloc's a new node and initialises it
